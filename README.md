@@ -9,3 +9,14 @@ To use project:
 3. run "npm install" to download dependencies
 
 4. run "npm start" and open your browser to 'http://localhost:3001'
+
+
+###
+
+In this small application, the data is stored on the server as it is known beforehand and will not change.
+
+Since the data is quite light, only one call is made to the server at the beginning and saved to a variable for further usage.
+
+###
+
+There is currently one bug, if a user chooses a place from the list when there is more than option, then pushes up or down, the original list will resurface.

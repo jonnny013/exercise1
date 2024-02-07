@@ -11,12 +11,14 @@ const handleInput = locations => {
     data.map((place, index) => {
       let row = document.createElement('a')
 
-      row.innerText = `
-       ${place.state}
-      `
+      row.innerText = place.state
       row.href = '#'
       row.addEventListener('click', () => {
         userInput.value = place.state
+        selectedIndex = index
+        handleDataChange(
+          locationToShow.filter(a => a.state === locationToShow[selectedIndex].state)
+        )
       })
       resultDisplay.appendChild(row)
       if (index === selectedIndex) {
@@ -27,6 +29,7 @@ const handleInput = locations => {
 
   const onChange = event => {
     event.preventDefault()
+    selectedIndex = -1
     const searchValue = event.target.value
 
     locationToShow = locations.filter(
