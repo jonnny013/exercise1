@@ -1,3 +1,22 @@
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+h1 {
+  width: fit-content;
+  text-align: center;
+}
+
 .selected {
   background-color: aqua;
+}
+
+#typeahead-results{ 
+  height: auto;
+  width: 400px;
+  background-color: aliceblue;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5)
 }
