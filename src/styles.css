@@ -15,24 +15,67 @@ h1 {
 
 form {
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+label {
+margin: 5px;
+text-align: center;
 }
 
 input {
   height: 30px;
-  width: 180px;
+  width: auto;
   border-radius: 3px;
   border: none;
   box-shadow: none;
   padding: 3px;
 }
 
+.inputDiv {
+  display: flex;
+  height: 30px;
+  background-color: white;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.innerInput {
+  padding: 5px;
+  background-color: aqua;
+  width: fit-content;
+  height: 14px;
+  margin: 5px;
+  margin-right: 0px;
+  color:darkblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
 input:focus {
   border: 2px solid green;
 }
 
-input:focus-visible {
+#searchBar:focus-visible {
   border: 2px solid blue;
   outline-color: green;
+  outline-width: 0;
+  padding: 5px
+}
+
+.inputDiv:focus-within {
+  border: 2px solid blue;
+  outline-color: green;
+  outline-width: 0;
+}
+
+input:focus-visible {
+  border: none;
+  outline-color: white;
   outline-width: 0;
   padding: 5px
 }

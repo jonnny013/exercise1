@@ -1,4 +1,5 @@
 import handleInput from './typeahead/handleInput.js'
+import handleMultipleInput from './typeahead/handleMultiple.js'
 const URL = 'http://localhost:3001'
 
 const main = async () => {
@@ -12,6 +13,6 @@ const main = async () => {
     throw new Error('Location issue')
   }
   handleInput(locations)
-  
+  handleMultipleInput(locations)
 }
 main()
