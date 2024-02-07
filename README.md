@@ -16,7 +16,3 @@ To use project:
 In this small application, the data is stored on the server as it is known beforehand and will not change.
 
 Since the data is quite light, only one call is made to the server at the beginning and saved to a variable for further usage.
-
-###
-
-There is currently one bug, if a user chooses a place from the list when there is more than option, then pushes up or down, the original list will resurface.

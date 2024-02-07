@@ -16,9 +16,10 @@ const handleInput = locations => {
       row.addEventListener('click', () => {
         userInput.value = place.state
         selectedIndex = index
-        handleDataChange(
-          locationToShow.filter(a => a.state === locationToShow[selectedIndex].state)
+        locationToShow = locationToShow.filter(
+          a => a.state === locationToShow[selectedIndex].state
         )
+        handleDataChange(locationToShow)
       })
       resultDisplay.appendChild(row)
       if (index === selectedIndex) {
@@ -54,11 +55,10 @@ const handleInput = locations => {
         event.preventDefault()
         if (selectedIndex >= 0 && selectedIndex < locationToShow.length) {
           userInput.value = locationToShow[selectedIndex].state
-          handleDataChange(
-            locationToShow.filter(a =>
-              a.state === locationToShow[selectedIndex].state
-            )
+          locationToShow = locationToShow.filter(
+            a => a.state === locationToShow[selectedIndex].state
           )
+          handleDataChange(locationToShow)
         }
         selectedIndex = -1
         break
