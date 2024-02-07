@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3001
 app.use(express.static('src'))
 
 app.get('/locations', (req, res) => {
+  console.log('get')
   res.json(locations)
 })
 
