@@ -1,5 +1,23 @@
 const userInput = document.getElementById('searchBarMulti')
 const resultDisplay = document.getElementById('typeahead-results')
+const inputHolder = document.getElementById('holder')
+
+
+
+const addNew = (text) => {
+  const bubble = document.createElement('div')
+  bubble.classList.add('innerInput')
+  bubble.innerText = text
+  const closeButton = document.createElement('a')
+  closeButton.classList.add('close')
+  closeButton.innerText = 'x'
+  closeButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    event.target.parentNode.remove()
+  })
+  bubble.appendChild(closeButton)
+  inputHolder.prepend(bubble)
+}
 
 const handleMultipleInput = locations => {
   let selectedIndex = -1
@@ -14,12 +32,9 @@ const handleMultipleInput = locations => {
       row.innerText = place.state
       row.href = '#'
       row.addEventListener('click', () => {
-        userInput.value = place.state
-        selectedIndex = index
-        locationToShow = locationToShow.filter(
-          a => a.state === locationToShow[selectedIndex].state
-        )
-        handleDataChange(locationToShow)
+        userInput.value = ''
+        addNew(place.state)
+        handleDataChange('')
       })
       resultDisplay.appendChild(row)
       if (index === selectedIndex) {
@@ -54,11 +69,9 @@ const handleMultipleInput = locations => {
       case 'Enter':
         event.preventDefault()
         if (selectedIndex >= 0 && selectedIndex < locationToShow.length) {
-          userInput.value = locationToShow[selectedIndex].state
-          locationToShow = locationToShow.filter(
-            a => a.state === locationToShow[selectedIndex].state
-          )
-          handleDataChange(locationToShow)
+          userInput.value = ''
+          addNew(locationToShow[selectedIndex].state)
+          handleDataChange('')
         }
         selectedIndex = -1
         break
