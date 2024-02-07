@@ -1,42 +1,68 @@
-import handleArrows from './handleKeyStrokes.js'
-
 const userInput = document.getElementById('searchBar')
 const resultDisplay = document.getElementById('typeahead-results')
 
-const handleInput = (locations) => {
-let selectedIndex = 0
-console.log(selectedIndex)
+const handleInput = locations => {
+  let selectedIndex = -1
+
+  let locationToShow
+
+  const handleDataChange = data => {
+    resultDisplay.innerHTML = ''
+    data.map((place, index) => {
+      let row = document.createElement('a')
+
+      row.innerText = `
+       ${place.state}
+      `
+      row.href = '#'
+      row.addEventListener('click', () => {
+        userInput.value = place.state
+      })
+      resultDisplay.appendChild(row)
+      if (index === selectedIndex) {
+        row.classList.add('selected')
+      }
+    })
+  }
+
   const onChange = event => {
     event.preventDefault()
     const searchValue = event.target.value
 
-    const locationToShow = locations.filter(a =>
-      a.state.toLowerCase().match(searchValue.toLowerCase())
+    locationToShow = locations.filter(
+      (a, index) => a.state.toLowerCase().match(searchValue.toLowerCase()) && index < 8
     )
-
-    const handleDataChange = data => {
-      resultDisplay.innerHTML = ''
-      data.map((place, index) => {
-        let row = document.createElement('a')
-
-        row.innerText = `
-       ${place.state}
-      `
-        row.href = '#'
-        row.addEventListener('click', () => {
-          userInput.value = place.state
-        })
-        resultDisplay.appendChild(row)
-
-        if (index === selectedIndex) {
-          row.classList.add('selected')
-        }
-      })
-    }
     handleDataChange(locationToShow)
   }
-  handleArrows(locations, selectedIndex)
   userInput.addEventListener('input', onChange)
+  userInput.addEventListener('keydown', event => {
+    switch (event.key) {
+      case 'ArrowUp':
+        event.preventDefault()
+        selectedIndex = Math.max(selectedIndex - 1, 0)
+        handleDataChange(locationToShow)
+        break
+      case 'ArrowDown':
+        event.preventDefault()
+        selectedIndex = Math.min(selectedIndex + 1, locationToShow.length - 1)
+        handleDataChange(locationToShow)
+        break
+      case 'Enter':
+        event.preventDefault()
+        if (selectedIndex >= 0 && selectedIndex < locationToShow.length) {
+          userInput.value = locationToShow[selectedIndex].state
+          handleDataChange(
+            locationToShow.filter(a =>
+              a.state === locationToShow[selectedIndex].state
+            )
+          )
+        }
+        selectedIndex = -1
+        break
+      default:
+        break
+    }
+  })
 }
 
 export default handleInput
