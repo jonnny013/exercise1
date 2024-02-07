@@ -1,4 +1,5 @@
 const userInput = document.getElementById('searchBar')
+const tableBody = document.getElementById('tableBody')
 const URL = 'http://localhost:3001'
 
 const main = async () => {
@@ -15,10 +16,22 @@ const main = async () => {
   const onChange = event => {
     event.preventDefault()
     const searchValue = event.target.value
+
     const locationToShow = locations.filter(a =>
       a.state.toLowerCase().match(searchValue.toLowerCase())
     )
-    console.log(locationToShow)
+    const table = data => {
+      tableBody.innerHTML = ''
+      data.map(place => {
+        let row = document.createElement('tr')
+        row.innerHTML = `
+        <td>${place.state}</td>
+        <td>${place.capital}</td>
+      `
+        tableBody.appendChild(row)
+      })
+    }
+    table(locationToShow)
   }
   userInput.addEventListener('input', onChange)
 }
