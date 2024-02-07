@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="icon" type="image/svg+xml" href="./mainLogo.ico" />
-   <script src="main.js" defer></script>
+   <script type="module" src="main.js" defer></script>
+       <link href="styles.css" rel="stylesheet">
   <title>Jon: Exercise 1</title>
 </head>
 <body>
@@ -13,19 +14,11 @@
     <label>
       Choose a State
     </label>
-    <input type="search" id="searchBar" />
+    <input type="search" id="searchBar" placeholder="Search here..." autocomplete="off" />
   </form>
-  <table id="displayDiv">
-    <thead>
-      <tr>
-        <th>State</th>
-        <th>Capital</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody">
+<div id="typeahead-results" role="listbox" >
 
-    </tbody>
-  </table>
+</div>
    
 </body>
 </html>
