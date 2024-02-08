@@ -16,3 +16,8 @@ To use project:
 In this small application, the data is stored on the server as it is known beforehand and will not change.
 
 Since the data is quite light, only one call is made to the server at the beginning and saved to a variable for further usage.
+
+
+###
+
+A note on the handling of the data on the front end, while I could spend some time putting the searched list into a variable and sending it to the backend, I decided on just focusing on UI only. For better/easier handling of the data, I strongly recommend using a framework like REACT.
