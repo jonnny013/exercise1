@@ -3,7 +3,6 @@ const resultDisplay = document.getElementById('typeahead-results')
 
 const handleInput = locations => {
   let selectedIndex = -1
-
   let locationToShow
 
   const handleDataChange = data => {
@@ -34,11 +33,13 @@ const handleInput = locations => {
     const searchValue = event.target.value
 
     locationToShow = locations.filter(
-      (a, index) => a.state.toLowerCase().match(searchValue.toLowerCase()) && index < 8
+      (item) => item.state.toLowerCase().match(searchValue.toLowerCase()) 
     )
-    handleDataChange(locationToShow)
+    handleDataChange(locationToShow.filter((item, index) => index < 8))
   }
+
   userInput.addEventListener('input', onChange)
+
   userInput.addEventListener('keydown', event => {
     switch (event.key) {
       case 'ArrowUp':

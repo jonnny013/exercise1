@@ -1,5 +1,5 @@
 const userInput = document.getElementById('searchBarMulti')
-const resultDisplay = document.getElementById('typeahead-results')
+const resultDisplay = document.getElementById('typeahead-results-multi')
 const inputHolder = document.getElementById('holder')
 
 
@@ -49,9 +49,9 @@ const handleMultipleInput = locations => {
     const searchValue = event.target.value
 
     locationToShow = locations.filter(
-      (a, index) => a.state.toLowerCase().match(searchValue.toLowerCase()) && index < 8
+      (a) => a.state.toLowerCase().match(searchValue.toLowerCase())
     )
-    handleDataChange(locationToShow)
+    handleDataChange(locationToShow.filter((item, index) => index < 8))
   }
   userInput.addEventListener('input', onChange)
   userInput.addEventListener('keydown', event => {

@@ -94,7 +94,7 @@ input:focus-visible {
   padding: 5px
 }
 
-#typeahead-results{ 
+#typeahead-results, #typeahead-results-multi{ 
   height: auto;
   width: 400px;
   background-color: aliceblue;
